@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: FTP Upload
+      - name: Check git version
+        run: git --version
+      - name: Build project
+        run: npm install && npm run build
+      - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: "ftp.anir.me" # the FTP server address, stored as a secret in GitHub
