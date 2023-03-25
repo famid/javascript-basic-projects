@@ -1,0 +1,25 @@
+name: FTP Deploy
+
+on:
+  push:
+    branches:
+      - production # the branch you want to deploy to FTP
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: FTP Upload
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          server: "ftp://ftp.anir.me" # the FTP server address, stored as a secret in GitHub
+          username: "js@anir.me" # the FTP username, stored as a secret in GitHub
+          password: "h!=gn2j;ram{" # the FTP password, stored as a secret in GitHub
+          local_dir: ./ # the local directory where the file is located
+          server_dir: /home/anirme/anir.me/js # the FTP directory where you want to upload the file
+          args: --exclude ".git*" # exclude git files from the upload
+
