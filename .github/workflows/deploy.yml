@@ -6,22 +6,16 @@ on:
       - production # the branch you want to deploy to FTP
 
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Check git version
-        run: git --version
-      - name: Build project
-        run: npm install && npm run build
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          ftp-server: "ftp.anir.me" # the FTP server address, stored as a secret in GitHub
-          ftp-username: "js@anir.me" # the FTP username, stored as a secret in GitHub
-          ftp-password: "h!=gn2j;ram{" # the FTP password, stored as a secret in GitHub
-          local-dir: ./javascript-basic-projects # the local directory where the file is located
-#          server_dir: /home/anirme/anir.me/js # the FTP directory where you want to upload the file
-          args: --exclude ".git*" # exclude git files from the upload
+          server: ftp.anir.me
+          username: js@anir.me
+          password: h!=gn2j;ram{
