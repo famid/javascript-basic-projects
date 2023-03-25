@@ -20,5 +20,5 @@ jobs:
           ftp-username: "js@anir.me" # the FTP username, stored as a secret in GitHub
           ftp-password: "h!=gn2j;ram{" # the FTP password, stored as a secret in GitHub
           local-dir: ./ # the local directory where the file is located
-          server_dir: /home/anirme/anir.me/js # the FTP directory where you want to upload the file
+#          server_dir: /home/anirme/anir.me/js # the FTP directory where you want to upload the file
           args: --exclude ".git*" # exclude git files from the upload
